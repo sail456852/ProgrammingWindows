@@ -19,7 +19,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
     wndclass.hInstance = hInstance ;
     wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION) ;
     wndclass.hCursor = LoadCursor (NULL, IDC_ARROW) ;
-    wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH) ;
+    wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH) ; // Undefined Symbol in CodeBlocks
     wndclass.lpszMenuName = NULL ;
     wndclass.lpszClassName = szAppName ;
     if (!RegisterClass (&wndclass))
@@ -57,7 +57,7 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
        // PlaySound(_T("hello.wav"),NULL,SND_FILENAME);
-        PlaySound ( TEXT ( "bison.wav"), NULL , SND_SYNC );
+        PlaySound ( TEXT ( "bison.wav"), NULL , SND_SYNC ); //need add lib
         return 0 ;
     case WM_PAINT:
         hdc = BeginPaint (hwnd, &ps) ;
