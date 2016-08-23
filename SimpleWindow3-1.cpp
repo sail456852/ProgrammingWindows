@@ -19,7 +19,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
     wndclass.hInstance = hInstance ;
     wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION) ;
     wndclass.hCursor = LoadCursor (NULL, IDC_ARROW) ;
-    wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH) ; // Undefined Symbol in CodeBlocks
+    wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH) ; // Undefined Symbol in CodeBlocks ,Works well in Visual Studio
     wndclass.lpszMenuName = NULL ;
     wndclass.lpszClassName = szAppName ;
     if (!RegisterClass (&wndclass))
@@ -41,7 +41,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
                          NULL) ; // creation parameters
     ShowWindow (hwnd, iCmdShow) ;
     UpdateWindow (hwnd) ;
-    while (GetMessage (&msg, NULL, 0, 0))
+    while (GetMessage (&msg, NULL, 0, 0))  //That's the heart of the Windows looping 
     {
         TranslateMessage (&msg) ;
         DispatchMessage (&msg) ;
@@ -60,12 +60,12 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
         PlaySound ( TEXT ( "bison.wav"), NULL , SND_SYNC ); //need add lib
         return 0 ;
     case WM_PAINT:
-        hdc = BeginPaint (hwnd, &ps) ;
+        hdc = BeginPaint (hwnd, &ps) ; //HDC gets its initialisation here 
         GetClientRect (hwnd, &rect) ;
         DrawText(hdc,TEXT("Hello wangyuzhen!"),-1,&rect,DT_SINGLELINE|DT_CENTER|DT_VCENTER);
         EndPaint (hwnd, &ps) ;
         return 0 ;
-    case WM_DESTROY:
+    case WM_DESTROY:  // When you click the exit button on the windows , will cause Windows to send WM_DESTORY message  here 
         PostQuitMessage (0) ;
         return 0 ;
     }
